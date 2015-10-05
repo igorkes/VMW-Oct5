@@ -15,7 +15,17 @@ public class VMWOct5 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        String s1 = "Hello";
+        String s2 = "Hello";
+        if (s1 == s2) {
+            System.out.println("Same!??");
+        } else {
+            System.out.println("Different.");
+        }
+//        s1 = s1.toLowerCase();
+//        System.out.println("s1 is " + s1);
+        System.out.println("s1.toLowerCase() is " + s1.toLowerCase());
+        System.out.println("s1 is " + s1);
     }
     
 }
