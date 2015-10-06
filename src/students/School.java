@@ -18,5 +18,8 @@ public class School {
         theClass.add(new Student("Sheila", "Over the Rainbow", 3.9F));
         
         System.out.println("Student s1 is " + s1);
+        
+        Student s2 = new SmartyPants("William", "next door", 4.0F, "Physics");
+        System.out.println("the SmartyPants is " + s2);
     }
 }

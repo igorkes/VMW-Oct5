@@ -14,7 +14,7 @@ public class Student {
 
     public Student(String name, String address, float gpa) {
         this(name, gpa);
-        this.address = this.address;
+        this.address = address;
     }
 
 //    Cannot have two constructors with same _type_ list (names don't differentiate0
@@ -44,7 +44,7 @@ public class Student {
     public String getAddress() {
         return this.address;
     }
-    
+
 //    private String banana = "banana";
 //
 //    public String getBanana() {
@@ -64,7 +64,6 @@ public class Student {
         return prefix + this.getName() + " has gpa " + gpa;
     }
 
-    
     private void isValid(String name, float gpa) {
         if (!(name != null
             && name.length() > 0
@@ -73,9 +72,10 @@ public class Student {
             throw new RuntimeException("Bad student!");
         }
     }
-    
+
     public String toString() {
-        return "Student [ name = " + this.name
+        return this.getClass().getName()
+            + " [ name = " + this.name
             + ", address = " + this.address
             + ", gpa = " + this.gpa + "]";
     }
