@@ -19,29 +19,22 @@ public class Account {
     }
     
     public long withdraw(long amount) {
-        return withdraw("RAW Withdrawal", amount);
+       throw new RuntimeException("Should never be called!");
     }
     
     public long deposit(long amount) {
-        return deposit("RAW deposit", amount);
+       throw new RuntimeException("Should never be called!");
     }
     
     public void monthEnd() {
         log("RAW month end");
     }
     
-    protected long withdraw(String transactionType, long amount) {
-        balance -= amount;
-        log(transactionType + " debit of: " + amount + " new balance: " + balance);
-        return amount;
-    }
-    
-    protected long deposit(String transactionType, long amount) {
+    protected final void transact(String transactionType, long amount) {
         balance += amount;
-        log(transactionType + " credit of: " + amount + " new balance: " + balance);
-        return balance;
+        log(transactionType + " of: " + amount + " new balance: " + balance);
     }
-    
+
     @Override
     public String toString() {
         return this.getClass().getName() 

@@ -1,7 +1,7 @@
 package banking;
 
 public class CheckingAccount extends Account {
-    public static final long FEE = 35;
+    public static final long FEE = -35;
     
     private long overdraftLimit;
     
@@ -13,16 +13,18 @@ public class CheckingAccount extends Account {
     @Override
     public long withdraw(long amount) {
         if (getBalance() - amount > overdraftLimit) {
-            return super.withdraw("Withdrawal", amount);
+            transact("Withdrawal", -amount);
+            return amount; 
         } else {
-            super.withdraw("Fee for refused withdrawal", FEE);
+            transact("Fee for refused withdrawal", FEE);
             return 0;
         }
     }
     
     @Override
     public long deposit(long amount) {
-        return super.deposit("Deposit", amount);
+        transact("Deposit", amount);
+        return getBalance(); 
     }
     
     @Override
@@ -30,7 +32,7 @@ public class CheckingAccount extends Account {
         long balance = getBalance();
         if (balance < 0) {
             long interest = balance / 10; // not realistic!
-            super.withdraw("Monthly interest", interest);
+            transact("Monthly interest", interest);
         }
     }
 }

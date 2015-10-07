@@ -7,20 +7,22 @@ public class SavingsAccount extends Account {
    
     public long withdraw(long amount) {
         if (getBalance() - amount > 100) {
-            return super.withdraw("Withdrawal", amount);
+            transact("Withdrawal", -amount);
+            return amount; 
         } else {
-            super.withdraw("Declined withdrawal ", 0);
+            transact("Declined withdrawal ", 0);
             return 0;
         }
     }
     
     @Override
     public long deposit(long amount) {
-        return super.deposit("Deposit" , amount);
+        transact("Deposit" , amount);
+        return getBalance();
     }
     
     @Override
     public void monthEnd() {
-        super.deposit("Interest payment", getBalance() / 10);
+        transact("Interest payment", getBalance() / 10);
     }
 }
