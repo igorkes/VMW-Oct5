@@ -1,4 +1,4 @@
-package banking;
+package strategybanking;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +19,10 @@ public class TheBanker {
     
     public static void main(String [] args) {
         System.out.println("Creating The Bank!");
-//        Account ac0 = new Account("Nemo", 0);
-//        ac0.deposit(100);
         List<Account> accounts = new ArrayList<>();
-        Account ac1 = new CheckingAccount("Fred", 2000, -1000);
-        Account ac2 = new CheckingAccount("Jim", 100, 0);
-        Account ac3 = new SavingsAccount("Sheila", 10000);
+        Account ac1 = new Account("Fred", 2000, new MinimumBalanceWithdrawalStrategy(-1000));
+        Account ac2 = new Account("Jim", 100, new LimitedWithdrawalStrategy());
+        Account ac3 = new Account("Sheila", 10000, new MinimumBalanceWithdrawalStrategy(100));
         accounts.add(ac1);
         accounts.add(ac2);
         accounts.add(ac3);
@@ -37,6 +35,9 @@ public class TheBanker {
         ac2.withdraw(1000);
         doMonthEnd(accounts);
         ac2.deposit(1000);
+        ac2.withdraw(10);
+        ac2.withdraw(10);
+        ac2.withdraw(10);
         ac3.withdraw(6000);
         ac3.deposit(12000);
         doMonthEnd(accounts);
